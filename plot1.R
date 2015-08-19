@@ -26,7 +26,7 @@ project2plot1 <- function() {
     png(filename = 'plot1.png', width = 480, height = 480)
     
     # Plot the Bar Graph to Visualize PM2.5 Emissions Each Year
-    barplot(pm25TotalYear, main = "Total Emissions by Year", xlab="Year", ylab="Emissions")
+    barplot(pm25TotalYear, main = "Total Emissions by Year", xlab="Year", ylab="Emissions (tons)")
     ## source: Coursera Getting and Cleaning Data Class: Reshaping Data
     
     dev.off()
