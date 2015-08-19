@@ -17,3 +17,14 @@ project2plot1 <- function() {
     
     NEI <- readRDS(file[2])
     SCC <- readRDS(file[1])
+
+    # Subset by Year, Apply "sum" function
+    
+    pm25TotalYear <- tapply(NEI$Emissions, NEI$year, sum)
+    
+    # Open PNG Device
+    png(filename = 'plot1.png', width = 480, height = 480)
+    
+    # Plot the Bar Graph to Visualize PM2.5 Emissions Each Year
+    barplot(pm25TotalYear, main = "Total Emissions by Year", xlab="Year", ylab="Emissions")
+    
