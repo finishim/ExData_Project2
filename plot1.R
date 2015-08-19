@@ -29,3 +29,4 @@ project2plot1 <- function() {
     barplot(pm25TotalYear, main = "Total Emissions by Year", xlab="Year", ylab="Emissions")
     ## source: Coursera Getting and Cleaning Data Class: Reshaping Data
     
+    dev.off()
