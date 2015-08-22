@@ -30,16 +30,18 @@ project2plot4 <- function() {
     
     library(dplyr)
     neiCoal <- group_by(NeiCoal, type, year)
-    neiCoalSummary <- summarize(neiCoal, pm25 = sum(Emissions, na.rm = TRUE)
+    neiCoalSummary <- summarize(neiCoal, pm25 = sum(Emissions, na.rm = TRUE))
     
     # Draw the plot
     
     library(ggplot2)
-    g <- ggplot(data = neiCoal, aes(x=year, y=Emissions, fill=type)) + 
+    
+    g <- ggplot(data = neiCoalSummary, aes(x=year, y=pm25, fill=type)) + 
         geom_bar(stat="identity", position="dodge") + 
         ggtitle("Total Emissions by Type in US from Coal Combustion-Related Sources by Year") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
     
+    ggsave(g, file = "plot4.png")
 }
