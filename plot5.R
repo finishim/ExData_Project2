@@ -3,7 +3,7 @@ project2plot5 <- function() {
     # Exploratory Data Analysis
     # Course Project 2
     
-    # Across the United States, how have emissions from coal combustion-related sources changed from 1999-2008?
+    # How have emissions from motor vehicle sources changed from 1999-2008 in Baltimore City?
     
     # Download the file and extract the portion needed
     
@@ -15,4 +15,8 @@ project2plot5 <- function() {
     
     NEI <- readRDS(file[2])
     SCC <- readRDS(file[1])
+    
+    # Subset NEI to Baltimore
+    
+    NEIbaltimore <- subset(NEI, NEI$fips==24510)
 }
