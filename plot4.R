@@ -21,4 +21,25 @@ project2plot4 <- function() {
     selectCoal <- grep("^fuel comb -(.*)- coal$", SCC$EI.Sector, ignore.case=T)
     sccCoal <- SCC[selectCoal,]
     ## source: https://class.coursera.org/exdata-031/forum/thread?thread_id=60#post-406
+    
+    # Subset those rows in NEI that relate to coal combustion
+    
+    neiCoal <- subset(NEI, SCC %in% sccCoal$SCC)
+    
+    # Group by Type and Year, Summarize with "sum" function
+    
+    library(dplyr)
+    neiCoal <- group_by(NeiCoal, type, year)
+    neiCoalSummary <- summarize(neiCoal, pm25 = sum(Emissions, na.rm = TRUE)
+    
+    # Draw the plot
+    
+    library(ggplot2)
+    g <- ggplot(data = neiCoal, aes(x=year, y=Emissions, fill=type)) + 
+        geom_bar(stat="identity", position="dodge") + 
+        ggtitle("Total Emissions by Type in US from Coal Combustion-Related Sources by Year") + 
+        xlab("Year") + 
+        ylab("Emissions (tons)") + 
+        xlim(1997,2010)
+    
 }
