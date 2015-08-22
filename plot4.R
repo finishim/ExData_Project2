@@ -36,8 +36,10 @@ project2plot4 <- function() {
     
     library(ggplot2)
     
+    # Display the Total Emissions by all types, but if needed one can learn how much by each type
+    # So get the bars to overlap this time with different "type"
     g <- ggplot(data = neiCoalSummary, aes(x=year, y=pm25, fill=type)) + 
-        geom_bar(stat="identity", position="dodge") + 
+        geom_bar(stat="identity") + 
         ggtitle("Total Emissions by Type in US from Coal Combustion-Related Sources by Year") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
