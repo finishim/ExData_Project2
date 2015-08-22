@@ -31,13 +31,14 @@ project2plot3 <- function() {
     ## source: https://class.coursera.org/exdata-031/forum/thread?thread_id=186#post-770
 
     # Plot the GGPlot graphs to Visualize PM2.5 Emissions Each Year for Different Types
+    
     library(ggplot2)
     g <- ggplot(data = baltimorePM25summary, aes(x=year, y=pm25, fill=type)) + 
         geom_bar(stat="identity", position="dodge") + 
         ggtitle("Total Emissions by Type and Year in Baltimore") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
-        xlim(1997,2008)
+        xlim(1997,2010)
     
     ggsave(g, file = "plot3.png")
 }
