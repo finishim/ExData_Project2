@@ -37,7 +37,7 @@ project2plot3 <- function() {
         ggtitle("Total Emissions by Type and Year in Baltimore") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
-        xlim(1999,2008)
+        xlim(1997,2008)
     
     ggsave(g, file = "plot3.png")
 }
