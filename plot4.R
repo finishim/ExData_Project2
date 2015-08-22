@@ -29,7 +29,7 @@ project2plot4 <- function() {
     # Group by Type and Year, Summarize with "sum" function
     
     library(dplyr)
-    neiCoal <- group_by(NeiCoal, type, year)
+    neiCoal <- group_by(neiCoal, type, year)
     neiCoalSummary <- summarize(neiCoal, pm25 = sum(Emissions, na.rm = TRUE))
     
     # Draw the plot
