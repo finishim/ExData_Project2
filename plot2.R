@@ -33,4 +33,4 @@ project2plot2 <- function() {
     ## source: Coursera Getting and Cleaning Data Class: Reshaping Data
     
     dev.off()
-    
+}
