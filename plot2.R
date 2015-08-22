@@ -23,13 +23,13 @@ project2plot2 <- function() {
     
     # Subset by Year, Apply "sum" function
     
-    pm25TotalYearBaltimore <- tapply(NEIbaltimore$Emissions, NEI$year, sum)
+    pm25TotalYearBaltimore <- tapply(NEIbaltimore$Emissions, NEIbaltimore$year, sum)
     
     # Open PNG Device
     png(filename = 'plot2.png', width = 480, height = 480)
     
     # Plot the Bar Graph to Visualize PM2.5 Emissions Each Year
-    barplot(pm25TotalYearBaltimore , main = "Total Emissions by Year", xlab="Year", ylab="Emissions (tons)")
+    barplot(pm25TotalYearBaltimore , main = "Total Emissions by Year in Baltimore", xlab="Year", ylab="Emissions (tons)")
     ## source: Coursera Getting and Cleaning Data Class: Reshaping Data
     
     dev.off()
