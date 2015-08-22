@@ -16,7 +16,17 @@ project2plot5 <- function() {
     NEI <- readRDS(file[2])
     SCC <- readRDS(file[1])
     
-    # Subset NEI to Baltimore
+    # Subset NEI to Baltimore, MD
     
     NEIbaltimore <- subset(NEI, NEI$fips==24510)
+    
+    # Subset SCC to Vehicle Sources
+    # EI.Sector ends with "Vehicles"
+    
+    selectVehicle <- grep("Vehicles$", SCC$EI.Sector, ignore.case=T)
+    sccVehicle <- SCC[selectVehicle,]
+    
+    # Subset those rows in NEIbaltimore that relate to coal combustion
+    
+    neiVehicle <- subset(NEIbaltimore, SCC %in% sccVehicle$SCC)
 }
