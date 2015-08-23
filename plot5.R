@@ -29,4 +29,25 @@ project2plot5 <- function() {
     # Subset those rows in NEIbaltimore that relate to coal combustion
     
     neiVehicle <- subset(NEIbaltimore, SCC %in% sccVehicle$SCC)
+    
+    # Group by Type and Year, Summarize with "sum" function
+    
+    library(dplyr)
+    neiVehicle <- group_by(neiVehicle, type, year)
+    neiVehicleSummary <- summarize(neiVehicle, pm25 = sum(Emissions, na.rm = TRUE))
+    
+    # Draw the plot
+    
+    library(ggplot2)
+    
+    # Display the Total Emissions by all types, but if needed one can learn how much by each type
+    # So get the bars to overlap this time with different "type"
+    g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25)) + 
+        geom_bar(stat="identity", fill="steelblue") + 
+        ggtitle("Total Emissions from Motor Vehicles in Baltimore 1999-2008") + 
+        xlab("Year") + 
+        ylab("Emissions (tons)") + 
+        xlim(1997,2010)
+    
+    ggsave(g, file = "plot5.png")
 }
