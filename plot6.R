@@ -17,4 +17,48 @@ project2plot6 <- function() {
     
     NEI <- readRDS(file[2])
     SCC <- readRDS(file[1])
+    
+    # Subset NEI to Baltimore, MD
+    
+    NEIbaltimore <- subset(NEI, NEI$fips==24510)
+    
+    # Subst NEI to Los Angeles, CA
+    
+    NEIlosangeles <- subset(NEI, NEI$fips=="06037")
+
+    # Subset SCC to Vehicle Sources
+    # EI.Sector ends with "Vehicles"
+    
+    selectVehicle <- grep("Vehicles$", SCC$EI.Sector, ignore.case=T)
+    sccVehicle <- SCC[selectVehicle,]
+    
+    # Subset those rows in NEIbaltimore & NEIlosangeles that relate to vehicles
+    
+    neiVehicleBM <- subset(NEIbaltimore, SCC %in% sccVehicle$SCC)
+    neiVehicleLA <- subset(NEIlosangeles, SCC %in% sccVehicle$SCC)
+    
+    # Group by Year, Summarize with "sum" function
+    
+    library(dplyr)
+    neiVehicleBM <- group_by(neiVehicleBM, year)
+    neiVehicleBMSummary <- summarize(neiVehicleBM, pm25 = sum(Emissions, na.rm = TRUE), City = "Baltimore")
+    neiVehicleLA <- group_by(neiVehicleLA, year)
+    neiVehicleLASummary <- summarize(neiVehicleLA, pm25 = sum(Emissions, na.rm = TRUE), City = "Los Angeles")
+    
+    # Combine the Summary Data Frames
+    neiVehicleSummary <- rbind(neiVehicleBMSummary,neiVehicleLASummary)
+    # Draw the plot
+    
+    library(ggplot2)
+    
+    # Display the Total Emissions by all types, but if needed one can learn how much by each type
+    # So get the bars to overlap this time with different "type"
+    g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25, fill=City)) + 
+        geom_bar(stat="identity", position="dodge") + 
+        ggtitle("Total Emissions from Motor Vehicles in Baltimore 1999-2008") + 
+        xlab("Year") + 
+        ylab("Emissions (tons)") + 
+        xlim(1997,2010)
+    
+    ggsave(g, file = "plot6.png")
 }
