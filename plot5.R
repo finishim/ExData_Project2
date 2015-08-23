@@ -36,15 +36,12 @@ project2plot5 <- function() {
     neiVehicle <- group_by(neiVehicle, year)
     neiVehicleSummary <- summarize(neiVehicle, pm25 = sum(Emissions, na.rm = TRUE))
     
+    # Open PNG Device
+    png(filename = 'plot5.png', width = 480, height = 480)
+      
     # Draw the plot
     
     library(ggplot2)
-    
-    # Open PNG Device
-    png(filename = 'plot5.png', width = 480, height = 480)
-    
-    # Display the Total Emissions by all types, but if needed one can learn how much by each type
-    # So get the bars to overlap this time with different "type"
     g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25)) + 
         geom_bar(stat="identity", fill="steelblue") + 
         ggtitle("Total Emissions from Motor Vehicles in Baltimore 1999-2008") + 

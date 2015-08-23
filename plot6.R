@@ -47,15 +47,13 @@ project2plot6 <- function() {
     
     # Combine the Summary Data Frames
     neiVehicleSummary <- rbind(neiVehicleBMSummary,neiVehicleLASummary)
-    # Draw the plot
-    
-    library(ggplot2)
     
     # Open PNG Device
     png(filename = 'plot6.png', width = 480, height = 480)
     
-    # Display the Total Emissions by all types, but if needed one can learn how much by each type
-    # So get the bars to overlap this time with different "type"
+    # Draw the plot
+    
+    library(ggplot2)
     g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25, fill=City)) + 
         geom_bar(stat="identity", position="dodge") + 
         ggtitle("Emissions from Motor Vehicles in Baltimore & LA 1999-2008") + 

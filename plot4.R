@@ -32,15 +32,14 @@ project2plot4 <- function() {
     neiCoal <- group_by(neiCoal, type, year)
     neiCoalSummary <- summarize(neiCoal, pm25 = sum(Emissions, na.rm = TRUE))
     
-    # Draw the plot
-    
-    library(ggplot2)
-    
     # Open PNG Device
     png(filename = 'plot4.png', width = 480, height = 480)
     
+    # Draw the plot
     # Display the Total Emissions by all types, but if needed one can learn how much by each type
     # So get the bars to overlap this time with different "type"
+    
+    library(ggplot2)
     g <- ggplot(data = neiCoalSummary, aes(x=year, y=pm25, fill=type)) + 
         geom_bar(stat="identity") + 
         ggtitle("Total Emissions by Type in US from Coal Combustion-Related Sources by Year") + 

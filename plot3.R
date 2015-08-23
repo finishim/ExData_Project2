@@ -30,10 +30,10 @@ project2plot3 <- function() {
     baltimorePM25summary <- summarize(NEIbaltimore, pm25 = sum(Emissions, na.rm = TRUE))
     ## source: https://class.coursera.org/exdata-031/forum/thread?thread_id=186#post-770
 
-    # Plot the GGPlot graphs to Visualize PM2.5 Emissions Each Year for Different Types
-    
     # Open PNG Device
     png(filename = 'plot3.png', width = 480, height = 480)
+    
+    # Plot the GGPlot graphs to Visualize PM2.5 Emissions Each Year for Different Types
     
     library(ggplot2)
     g <- ggplot(data = baltimorePM25summary, aes(x=year, y=pm25, fill=type)) + 
@@ -41,7 +41,8 @@ project2plot3 <- function() {
         ggtitle("Total Emissions by Type and Year in Baltimore") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
-        xlim(1997,2010)
+        xlim(1997,2010) +
+        facet_grid(.~type)
     
     print(g)
     dev.off()
