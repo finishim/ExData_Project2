@@ -40,5 +40,5 @@ project2plot3 <- function() {
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
     
-    ggsave(g, file = "plot3.png")
+    ggsave(g, file = "plot3.png",  scale = 0.5)
 }
