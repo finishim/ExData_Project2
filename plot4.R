@@ -36,6 +36,9 @@ project2plot4 <- function() {
     
     library(ggplot2)
     
+    # Open PNG Device
+    png(filename = 'plot4.png', width = 480, height = 480)
+    
     # Display the Total Emissions by all types, but if needed one can learn how much by each type
     # So get the bars to overlap this time with different "type"
     g <- ggplot(data = neiCoalSummary, aes(x=year, y=pm25, fill=type)) + 
@@ -45,5 +48,6 @@ project2plot4 <- function() {
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
     
-    ggsave(g, file = "plot4.png",  scale = 0.5)
+    print(g)
+    dev.off()
 }

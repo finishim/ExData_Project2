@@ -32,6 +32,9 @@ project2plot3 <- function() {
 
     # Plot the GGPlot graphs to Visualize PM2.5 Emissions Each Year for Different Types
     
+    # Open PNG Device
+    png(filename = 'plot3.png', width = 480, height = 480)
+    
     library(ggplot2)
     g <- ggplot(data = baltimorePM25summary, aes(x=year, y=pm25, fill=type)) + 
         geom_bar(stat="identity", position="dodge") + 
@@ -40,5 +43,6 @@ project2plot3 <- function() {
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
     
-    ggsave(g, file = "plot3.png",  scale = 0.5)
+    print(g)
+    dev.off()
 }

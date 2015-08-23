@@ -40,6 +40,9 @@ project2plot5 <- function() {
     
     library(ggplot2)
     
+    # Open PNG Device
+    png(filename = 'plot5.png', width = 480, height = 480)
+    
     # Display the Total Emissions by all types, but if needed one can learn how much by each type
     # So get the bars to overlap this time with different "type"
     g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25)) + 
@@ -48,6 +51,7 @@ project2plot5 <- function() {
         xlab("Year") + 
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
-    
-    ggsave(g, file = "plot5.png",  scale = 0.5)
+      
+    print(g)
+    dev.off()
 }
