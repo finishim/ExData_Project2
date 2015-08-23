@@ -30,10 +30,10 @@ project2plot5 <- function() {
     
     neiVehicle <- subset(NEIbaltimore, SCC %in% sccVehicle$SCC)
     
-    # Group by Type and Year, Summarize with "sum" function
+    # Group by Year, Summarize with "sum" function
     
     library(dplyr)
-    neiVehicle <- group_by(neiVehicle, type, year)
+    neiVehicle <- group_by(neiVehicle, year)
     neiVehicleSummary <- summarize(neiVehicle, pm25 = sum(Emissions, na.rm = TRUE))
     
     # Draw the plot
