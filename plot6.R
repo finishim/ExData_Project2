@@ -55,7 +55,7 @@ project2plot6 <- function() {
     # So get the bars to overlap this time with different "type"
     g <- ggplot(data = neiVehicleSummary, aes(x=year, y=pm25, fill=City)) + 
         geom_bar(stat="identity", position="dodge") + 
-        ggtitle("Total Emissions from Motor Vehicles in Baltimore 1999-2008") + 
+        ggtitle("Comparison of Total Emissions from Motor Vehicles in Baltimore & LA 1999-2008") + 
         xlab("Year") + 
         ylab("Emissions (tons)") + 
         xlim(1997,2010)
