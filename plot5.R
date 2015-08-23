@@ -26,7 +26,7 @@ project2plot5 <- function() {
     selectVehicle <- grep("Vehicles$", SCC$EI.Sector, ignore.case=T)
     sccVehicle <- SCC[selectVehicle,]
     
-    # Subset those rows in NEIbaltimore that relate to coal combustion
+    # Subset those rows in NEIbaltimore that relate to vehicles
     
     neiVehicle <- subset(NEIbaltimore, SCC %in% sccVehicle$SCC)
     
